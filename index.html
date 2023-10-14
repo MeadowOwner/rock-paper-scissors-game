@@ -30,6 +30,7 @@
             // regardless of uppercase or lowercase
             let gameWin = 0;
             // gameWin is 0 in a win, 1 in a loss, and 2 in a tie
+            let gameMessage = "";
             switch(playerSelection){
                 case "rock":
                     switch(computerSelection){
@@ -68,13 +69,32 @@
                     }
                     break;
                 default:
-                    return "invalid input"
+                    gameWin = -1;
             }
-            return gameWin;
+
+            // This section is to make the playerSelection's first letter uppercase
+            playerSelection = playerSelection.at(0).toUpperCase().concat(playerSelection.slice(1));
+
+            if(gameWin === 0){
+                gameMessage = `You Won!! ${playerSelection} beats ${computerSelection}!`;
+            }
+            else if(gameWin === 1){
+                gameMessage =  `You Lost! ${computerSelection} beats ${playerSelection}!`;
+            }
+            else if(gameWin === 2){
+                gameMessage =  `You Tied! Both you and the computer chose ${computerSelection}!`;
+            }
+            else{
+                gameMessage = `invalide input`;
+            }
+            return gameMessage;
         }
 
         const computerSelection = getComputerChoice();
         const playerSelection = "rock";
+
+        let message = playRound(playerSelection, computerSelection);
+        console.log(message);
 
     </script>
 </body>
