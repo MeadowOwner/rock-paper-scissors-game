@@ -11,17 +11,71 @@
             let compChoice = "";
             let compChoiceNum = Math.floor(Math.random() * 3);
             if(compChoiceNum === 0){
-                compChoice = "rock";
+                compChoice = "Rock";
             }
             else if(compChoiceNum === 1){
-                compChoice = "paper";
+                compChoice = "Paper";
             }
             else{
-                compChoice = "scissors";
+                compChoice = "Scissors";
             }
             return compChoice;
         }
         console.log(getComputerChoice());
+
+
+        function playRound(playerSelection, computerSelection){
+            playerSelection = playerSelection.toLowerCase();
+            // just to make sure that user input will be treated the same
+            // regardless of uppercase or lowercase
+            let gameWin = 0;
+            // gameWin is 0 in a win, 1 in a loss, and 2 in a tie
+            switch(playerSelection){
+                case "rock":
+                    switch(computerSelection){
+                        case "Rock":
+                            gameWin = 2;
+                            break;
+                        case "Paper":
+                            gameWin = 1;
+                            break;
+                        default:
+                            gameWin = 0;
+                    }
+                    break;
+                case "paper":
+                    switch(computerSelection){
+                        case "Rock": 
+                            gameWin = 0;
+                            break;
+                        case "Paper":
+                            gameWin = 2;
+                            break;
+                        default: 
+                            gameWin = 1;
+                    }
+                    break;
+                case "scissors":
+                    switch(computerSelection){
+                        case "Rock": 
+                            gameWin = 1;
+                            break;
+                        case "Paper":
+                            gameWin = 0;
+                            break;
+                        default:
+                            gameWin = 2;
+                    }
+                    break;
+                default:
+                    return "invalid input"
+            }
+            return gameWin;
+        }
+
+        const computerSelection = getComputerChoice();
+        const playerSelection = "rock";
+
     </script>
 </body>
 </html>
