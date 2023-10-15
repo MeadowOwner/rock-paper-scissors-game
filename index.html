@@ -21,7 +21,7 @@
             }
             return compChoice;
         }
-        console.log(getComputerChoice());
+
 
 
         function playRound(playerSelection, computerSelection){
@@ -85,16 +85,31 @@
                 gameMessage =  `You Tied! Both you and the computer chose ${computerSelection}!`;
             }
             else{
-                gameMessage = `invalide input`;
+                gameMessage = `invalid input`;
             }
-            return gameMessage;
+            console.log(gameMessage);
+            return gameWin;
         }
 
-        const computerSelection = getComputerChoice();
-        const playerSelection = "rock";
+        function game(){
+            let userWin = 0;
+            let compWin = 0;
+            let gameCurrResult = "";
+            for(let i = 0; i < 5; ++i){
+                let playerSelection = prompt("Choose Rock, Paper, or Scissors");
+                let gameResult = playRound(playerSelection, getComputerChoice());
+                if(gameResult === 0){
+                    ++userWin;
+                }
+                else if(gameResult === 1){
+                    ++compWin;
+                }
+                gameCurrResult = `${userWin} - ${compWin}`;
+                console.log(gameCurrResult);
+            }
+        }
 
-        let message = playRound(playerSelection, computerSelection);
-        console.log(message);
+        game();
 
     </script>
 </body>
