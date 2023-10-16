@@ -110,10 +110,19 @@ function game(){
 }
 */
 
+const btnSec = document.querySelector(".buttonSec")
 
-const btnRock = document.querySelector("#btnRock");
-const btnPaper = document.querySelector("#btnPaper");
-const btnScissors = document.querySelector("#btnScissors");
+const btnRock = document.createElement('button');
+const btnPaper = document.createElement('button');
+const btnScissors = document.createElement('button');
+
+btnRock.textContent = 'Rock';
+btnPaper.textContent = 'Paper';
+btnScissors.textContent = 'Scissors';
+
+btnRock.id = "btnRock";
+btnPaper.id = "btnPaper";
+btnScissors.id = "btnScissors";
 
 btnRock.addEventListener('click', () =>{
     playRound('rock', getComputerChoice());
@@ -124,5 +133,9 @@ btnPaper.addEventListener('click', () =>{
 btnScissors.addEventListener('click', () =>{
     playRound('scissors', getComputerChoice());
 })
+
+btnSec.appendChild(btnRock);
+btnSec.appendChild(btnPaper);
+btnSec.appendChild(btnScissors);
 
 const singleReuslts = document.querySelector(".SingleResults");
