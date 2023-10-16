@@ -90,52 +90,43 @@ function playRound(playerSelection, computerSelection){
     return gameWin;
 }
 
-/*
-function game(){
-    let userWin = 0;
-    let compWin = 0;
-    let gameCurrResult = "";
-    for(let i = 0; i < 5; ++i){
-        let playerSelection = prompt("Choose Rock, Paper, or Scissors");
-        let gameResult = playRound(playerSelection, getComputerChoice());
-        if(gameResult === 0){
-            ++userWin;
-        }
-        else if(gameResult === 1){
-            ++compWin;
-        }
-        gameCurrResult = `${userWin} - ${compWin}`;
-        console.log(gameCurrResult);
-    }
+
+// Assumes sections for buttons is there and has class .buttonSec
+function createButtons(){
+    const btnSec = document.querySelector(".buttonSec")
+
+    const btnRock = document.createElement('button');
+    const btnPaper = document.createElement('button');
+    const btnScissors = document.createElement('button');
+    
+    btnRock.textContent = 'Rock';
+    btnPaper.textContent = 'Paper';
+    btnScissors.textContent = 'Scissors';
+
+    btnRock.id = "btnRock";
+    btnPaper.id = "btnPaper";
+    btnScissors.id = "btnScissors";
+
+    btnRock.addEventListener('click', () =>{
+        playRound('rock', getComputerChoice());
+    });
+    btnPaper.addEventListener('click', () =>{
+        playRound('paper', getComputerChoice());
+    })
+    btnScissors.addEventListener('click', () =>{
+        playRound('scissors', getComputerChoice());
+    })
+
+    btnSec.appendChild(btnRock);
+    btnSec.appendChild(btnPaper);
+    btnSec.appendChild(btnScissors);
+
+}   
+
+// for when the start button is pressed
+const start = function(){
+    createButtons();
 }
-*/
 
-const btnSec = document.querySelector(".buttonSec")
-
-const btnRock = document.createElement('button');
-const btnPaper = document.createElement('button');
-const btnScissors = document.createElement('button');
-
-btnRock.textContent = 'Rock';
-btnPaper.textContent = 'Paper';
-btnScissors.textContent = 'Scissors';
-
-btnRock.id = "btnRock";
-btnPaper.id = "btnPaper";
-btnScissors.id = "btnScissors";
-
-btnRock.addEventListener('click', () =>{
-    playRound('rock', getComputerChoice());
-});
-btnPaper.addEventListener('click', () =>{
-    playRound('paper', getComputerChoice());
-})
-btnScissors.addEventListener('click', () =>{
-    playRound('scissors', getComputerChoice());
-})
-
-btnSec.appendChild(btnRock);
-btnSec.appendChild(btnPaper);
-btnSec.appendChild(btnScissors);
-
-const singleReuslts = document.querySelector(".SingleResults");
+const startButt = document.querySelector('#start');
+startButt.addEventListener('click', start);
