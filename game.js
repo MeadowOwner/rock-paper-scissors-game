@@ -1,3 +1,5 @@
+const totResults = document.querySelector(".results")
+
 function getComputerChoice(){
     let compChoice = "";
     let compChoiceNum = Math.floor(Math.random() * 3);
@@ -11,6 +13,12 @@ function getComputerChoice(){
         compChoice = "Scissors";
     }
     return compChoice;
+}
+
+function addResult(message){
+    const currResult = document.createElement('li');
+    currResult.textContent = message;
+    totResults.appendChild(currResult);
 }
 
 
@@ -78,7 +86,7 @@ function playRound(playerSelection, computerSelection){
     else{
         gameMessage = `invalid input`;
     }
-    console.log(gameMessage);
+    addResult(gameMessage);
     return gameWin;
 }
 
@@ -116,3 +124,5 @@ btnPaper.addEventListener('click', () =>{
 btnScissors.addEventListener('click', () =>{
     playRound('scissors', getComputerChoice());
 })
+
+const singleReuslts = document.querySelector(".SingleResults");
