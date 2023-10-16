@@ -82,6 +82,7 @@ function playRound(playerSelection, computerSelection){
     return gameWin;
 }
 
+/*
 function game(){
     let userWin = 0;
     let compWin = 0;
@@ -99,5 +100,19 @@ function game(){
         console.log(gameCurrResult);
     }
 }
+*/
 
-game();
+
+const btnRock = document.querySelector("#btnRock");
+const btnPaper = document.querySelector("#btnPaper");
+const btnScissors = document.querySelector("#btnScissors");
+
+btnRock.addEventListener('click', () =>{
+    playRound('rock', getComputerChoice());
+});
+btnPaper.addEventListener('click', () =>{
+    playRound('paper', getComputerChoice());
+})
+btnScissors.addEventListener('click', () =>{
+    playRound('scissors', getComputerChoice());
+})
