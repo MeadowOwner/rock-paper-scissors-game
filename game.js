@@ -1,4 +1,12 @@
+let userWin = 0;
+let compWin = 0;
+
 const body = document.querySelector('#everything');
+const roundResults = document.querySelector('.totResults')
+const scoreAll = document.querySelector('#scoreEverything');
+const currScore = document.querySelector('#currScore');
+const endResult = document.querySelector('#result');
+const buttonSec = document.querySelector('.buttonSec');
 
 function getComputerChoice(){
     let compChoice = "";
@@ -16,10 +24,14 @@ function getComputerChoice(){
 }
 
 function addResult(message){
-    const totResults = document.querySelector('.totResults');
+    const totResults = document.querySelector('.results');
     const currResult = document.createElement('li');
     currResult.textContent = message;
     totResults.appendChild(currResult);
+}
+
+function ending(){
+
 }
 
 
@@ -77,9 +89,11 @@ function playRound(playerSelection, computerSelection){
 
     if(gameWin === 0){
         gameMessage = `You Won!! ${playerSelection} beats ${computerSelection}!`;
+        ++userWin;
     }
     else if(gameWin === 1){
         gameMessage =  `You Lost! ${computerSelection} beats ${playerSelection}!`;
+        ++compWin;
     }
     else if(gameWin === 2){
         gameMessage =  `You Tied! Both you and the computer chose ${computerSelection}!`;
@@ -92,24 +106,24 @@ function playRound(playerSelection, computerSelection){
 }
 
 const reset = function(){
-    body.removeChild(document.querySelector('.totResults'));
-   // body.removeChild(document.querySelector(".buttonSec"));
+    roundResults.removeChild(document.querySelector('.results'));
+    buttonSec.removeChild(document.querySelector(".fourButt"));
 
-    const newTotResult = document.createElement('div');
-    newTotResult.classList.add('totResults');
-   // const newButtonSec = document.createElement('div');
-   // newButtonSec.classList.add('buttonSec');
+    const newTotResult = document.createElement('ul');
+    newTotResult.classList.add('results');
+    const newButtonSec = document.createElement('div');
+    newButtonSec.classList.add('fourButt');
 
-   // body.appendChild(newButtonSec);
-    body.appendChild(newTotResult);
+    buttonSec.appendChild(newButtonSec);
+    roundResults.appendChild(newTotResult);
 
-   // createButtons();
+    createButtons();
 }
 
 
 // Assumes sections for buttons is there and has class .buttonSec
 function createButtons(){
-    const btnSec = document.querySelector(".buttonSec")
+    const btnSec = document.querySelector(".fourButt")
 
     const btnRock = document.createElement('button');
     const btnPaper = document.createElement('button');
@@ -149,8 +163,8 @@ function createButtons(){
 const start = function(){
     body.removeChild(startButt);
     createButtons();
-
 }
 
 const startButt = document.querySelector('#start');
 startButt.addEventListener('click', start);
+
