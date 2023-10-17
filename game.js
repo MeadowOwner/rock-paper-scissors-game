@@ -7,6 +7,7 @@ const scoreAll = document.querySelector('#scoreEverything');
 const currScore = document.querySelector('#currScore');
 const endResult = document.querySelector('#result');
 const buttonSec = document.querySelector('.buttonSec');
+const finalMessage = document.querySelector('#final');
 
 function getComputerChoice(){
     let compChoice = "";
@@ -31,7 +32,11 @@ function addResult(message){
 }
 
 function ending(){
+    fourButt = document.querySelector('.fourButt');
 
+    fourButt.removeChild(document.querySelector('#btnRock'));
+    fourButt.removeChild(document.querySelector('#btnPaper'));
+    fourButt.removeChild(document.querySelector('#btnScissors'));
 }
 
 
@@ -102,10 +107,25 @@ function playRound(playerSelection, computerSelection){
         gameMessage = `invalid input`;
     }
     addResult(gameMessage);
+
+    if(userWin == 5){
+        ending();
+        finalMessage.textContent = 'You Won! :)';
+    }
+    else if(compWin == 5){
+        ending();
+        finalMessage.textContent = 'You Lost! :(';
+    }
+    currScore.textContent = `${userWin} - ${compWin}`;
     return gameWin;
 }
 
+// assume that .results and .fourButt are there
 const reset = function(){
+    userWin = 0;
+    compWin = 0;
+    currScore.textContent = '0 - 0';
+    finalMessage.textContent = '';
     roundResults.removeChild(document.querySelector('.results'));
     buttonSec.removeChild(document.querySelector(".fourButt"));
 
@@ -163,6 +183,7 @@ function createButtons(){
 const start = function(){
     body.removeChild(startButt);
     createButtons();
+    currScore.textContent = '0 - 0';
 }
 
 const startButt = document.querySelector('#start');
