@@ -93,17 +93,17 @@ function playRound(playerSelection, computerSelection){
 
 const reset = function(){
     body.removeChild(document.querySelector('.totResults'));
-    body.removeChild(document.querySelector(".buttonSec"));
+   // body.removeChild(document.querySelector(".buttonSec"));
 
     const newTotResult = document.createElement('div');
     newTotResult.classList.add('totResults');
-    const newButtonSec = document.createElement('div');
-    newButtonSec.classList.add('buttonSec');
+   // const newButtonSec = document.createElement('div');
+   // newButtonSec.classList.add('buttonSec');
 
-    body.appendChild(newButtonSec);
+   // body.appendChild(newButtonSec);
     body.appendChild(newTotResult);
 
-    createButtons();
+   // createButtons();
 }
 
 
