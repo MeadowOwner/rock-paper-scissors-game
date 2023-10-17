@@ -1,4 +1,4 @@
-const totResults = document.querySelector(".results")
+const body = document.querySelector('#everything');
 
 function getComputerChoice(){
     let compChoice = "";
@@ -16,6 +16,7 @@ function getComputerChoice(){
 }
 
 function addResult(message){
+    const totResults = document.querySelector('.totResults');
     const currResult = document.createElement('li');
     currResult.textContent = message;
     totResults.appendChild(currResult);
@@ -90,6 +91,21 @@ function playRound(playerSelection, computerSelection){
     return gameWin;
 }
 
+const reset = function(){
+    body.removeChild(document.querySelector('.totResults'));
+    body.removeChild(document.querySelector(".buttonSec"));
+
+    const newTotResult = document.createElement('div');
+    newTotResult.classList.add('totResults');
+    const newButtonSec = document.createElement('div');
+    newButtonSec.classList.add('buttonSec');
+
+    body.appendChild(newButtonSec);
+    body.appendChild(newTotResult);
+
+    createButtons();
+}
+
 
 // Assumes sections for buttons is there and has class .buttonSec
 function createButtons(){
@@ -98,14 +114,17 @@ function createButtons(){
     const btnRock = document.createElement('button');
     const btnPaper = document.createElement('button');
     const btnScissors = document.createElement('button');
+    const resButton = document.createElement('button');
     
     btnRock.textContent = 'Rock';
     btnPaper.textContent = 'Paper';
     btnScissors.textContent = 'Scissors';
+    resButton.textContent = 'Reset';
 
     btnRock.id = "btnRock";
     btnPaper.id = "btnPaper";
     btnScissors.id = "btnScissors";
+    resButton.id = 'resetButt';
 
     btnRock.addEventListener('click', () =>{
         playRound('rock', getComputerChoice());
@@ -117,15 +136,20 @@ function createButtons(){
         playRound('scissors', getComputerChoice());
     })
 
+    resButton.addEventListener('click', reset);
+
     btnSec.appendChild(btnRock);
     btnSec.appendChild(btnPaper);
     btnSec.appendChild(btnScissors);
+    btnSec.appendChild(resButton);
 
 }   
 
 // for when the start button is pressed
 const start = function(){
+    body.removeChild(startButt);
     createButtons();
+
 }
 
 const startButt = document.querySelector('#start');
